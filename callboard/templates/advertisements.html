@@ -1,0 +1,27 @@
+{% extends 'flatpages/default.html' %}
+{% block title %}
+Обьявления
+{% endblock title %}
+{% block content %}
+<h1>Все обьявления</h1>
+
+<form method="GET">
+    {{ filter.form }}
+    <input type="submit" value="Найти">
+</form>
+<ul class="list-group mt-4">
+    {% if advs %}
+    {% for adv in filter.qs %}
+    <li class="list-group-item" href="{% url 'adv_detail' adv.id %}">
+        <b>Заголовок: {{ adv.header }}</b>
+        <h5>Текст: {{ adv.text }}</h5>
+        <span>Пользователь: {{ adv.user }}</span>
+        <span class="pull-right mr-3"><a href="{% url 'adv_detail' adv.id %}">Перейти</a></span>
+    </li>
+</ul>
+{% endfor %}
+{% else %}
+<p>Обьявлений нет</p>
+{% endif %}
+
+{% endblock content %}

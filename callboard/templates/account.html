@@ -1,0 +1,39 @@
+{% extends 'flatpages/default.html' %}
+{% block title %} Личный кабинет {{ user }}{% endblock title %}
+
+{% block content %}
+<p></p>
+<form method="GET">
+    {{ filter.form }}
+    <input type="submit" value="Найти">
+</form>
+<ul class="list-group mt-4">
+    {% if user.advertisement_user.all%}
+    {% for adv in filter.qs %}
+    {% for advs in user.advertisement_user.all %}
+    {% if adv.post_id == advs.id %}
+    <li class="list-group-item" href="{% url 'adv_detail' adv.id %}">
+        <b>{{ advs.header}}</b>
+        <br>
+        <span>{{ adv.user }}</span>
+        <span class="pull-right mr-3"><a href="{% url 'adv_detail' adv.id %}">Посмотреть</a></span>
+        <br>
+        {% if not adv.is_accept %}
+        <span class="pull-right mr-3"><a href="{% url 'resp_accept' adv.id %}">Принять</a></span>
+        {% else %}
+        <span class="pull-right mr-3"><a href="{% url 'resp_cancel' adv.id %}">Отменить</a></span>
+        <br>
+        {% endif %}
+        <span>{{ adv.resp_text }}</span>
+        {% if adv.is_accept %}
+        <div class="pull-right"><b>Принят</b></div>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+    </li>
+    {% endfor %}
+    {% else %}
+    <p>Откликов нет</p>
+    {% endif %}
+</ul>
+{% endblock content %}

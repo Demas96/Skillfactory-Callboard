@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+Посмотри, может быть интересно!
+        <br>
+<ul class="list-group mt-4">
+    {% for adv in advs %}
+    <li class="list-group-item" href="{% url 'adv_detail' adv.id %}">
+        <b>{{ adv.header }}</b>
+        <span>{{ adv.text|safe }}</span>
+        <span>{{ adv.user }}</span>
+        <span class="pull-right mr-3"><a href="http://127.0.0.1:8000/adv/{{ adv.id }}">Перейти</a></span>
+    </li>
+    {% endfor %}
+</ul>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{% extends 'flatpages/default.html' %}
+{% block title %} {{ adv.header }} {% endblock title %}
+
+{% block content %}
+
+{% if user == adv.user %}
+<h1>{{ adv.header }}</h1>
+<p></p>
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Подтвердить">
+</form>
+    {% else %}
+    <h1>Вам тут не рады!</h1>
+    {% endif %}
+<form action="{% url 'adv_detail' adv.id %}">
+    <button>Отмена</button>
+</form>
+{% endblock content %}
