@@ -3,9 +3,10 @@
 
 {% block content %}
 <p></p>
-<form method="POST">
+<h2>Создать обьявление</h2>
+<form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form }}
+    {{ form.as_p }}
     <input type="submit" value="Опубликовать">
 </form>
 {% endblock content %}

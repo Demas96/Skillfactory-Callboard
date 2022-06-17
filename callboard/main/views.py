@@ -73,16 +73,17 @@ class AdvDetailView(FormMixin, DetailView):
         check_valid(self)
         return reverse_lazy('adv_detail', kwargs={'pk': self.get_object().id})
 
-class AdvEditView(LoginRequiredMixin, CreateView):
+class AdvEditView(LoginRequiredMixin, UpdateView):
     template_name = 'advertisement_create.html'
     form_class = AdvForm
+
+    def get_object(self, **kwargs):
+        id = self.kwargs.get('pk')
+        return Advertisement.objects.get(pk=id)
 
 class AdvCreateView(LoginRequiredMixin, CreateView):
     template_name = 'advertisement_create.html'
     form_class = AdvForm
-    def get_object(self, **kwargs):
-        id = self.kwargs.get('pk')
-        return Advertisement.objects.get(pk=id)
 
     def get_initial(self):
         initial = super().get_initial()

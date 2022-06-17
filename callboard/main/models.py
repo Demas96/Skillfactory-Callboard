@@ -16,7 +16,7 @@ class Advertisement(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Категория')
     time_create = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='advertisement_user')
-    image = models.ImageField(upload_to='images', null=True, blank=True)
+    image = models.ImageField(upload_to='images/', null=True, blank=True)
 
     def __str__(self):
         return f'{self.header}'
@@ -30,7 +30,7 @@ class Response(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     resp_text = models.CharField(max_length=255,  verbose_name='Текст')
     time_create = models.DateTimeField(auto_now_add=True)
-    accepted = models.BooleanField(default=False)
+    accepted = models.BooleanField(default=False, verbose_name='Принято')
 
     class Meta:
         unique_together = ('post', 'user')

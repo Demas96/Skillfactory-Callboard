@@ -2156,7 +2156,7 @@ progress {
   }
 }
 .form-label {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.1rem;
 }
 
 .col-form-label {
@@ -5092,10 +5092,10 @@ textarea.form-control-lg {
 .list-group-item {
   position: relative;
   display: block;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 2rem;
   color: #212529;
   text-decoration: none;
-  background-color: #fff;
+  background-color: #FAF8DC;
   border: 1px solid rgba(0, 0, 0, 0.125);
 }
 .list-group-item:first-child {
